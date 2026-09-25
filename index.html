@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GetNow — Pinterest Video & Image Downloader</title>
-  <meta name="description" content="Fast, minimal, and free Pinterest video, image, and GIF downloader. Just paste link and download in HD." />
+  <title>GetNow — Pinterest Video & Image Downloader (HD & 4K)</title>
+  <meta name="description" content="Fast, minimal, and free Pinterest video, image, and GIF downloader. Just paste link and download in full HD/4K quality." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 <body>
   <div class="background-glow"></div>
@@ -19,9 +20,9 @@
       <span class="logo-badge">⚡</span>
       <span class="logo-text">Get<span class="highlight">Now</span></span>
     </div>
-    <div class="header-tag">
-      <span class="status-dot"></span>
-      <span>100% Free • No Ads • Client-Side</span>
+    <div class="header-tag" id="backendStatusTag" title="Application running mode">
+      <span class="status-dot" id="backendStatusDot"></span>
+      <span id="backendStatusText">Checking connection...</span>
     </div>
   </header>
 
@@ -29,7 +30,7 @@
   <main class="main-container">
     <section class="hero-section">
       <h1 class="hero-title">Download Pinterest <span class="gradient-text">Videos & Images</span></h1>
-      <p class="hero-subtitle">Paste any Pinterest pin link or image address to preview and download in full HD/4K quality.</p>
+      <p class="hero-subtitle">Paste any Pinterest pin link or image address to preview and download in full original HD/4K quality.</p>
     </section>
 
     <!-- Downloader Box -->
@@ -65,7 +66,18 @@
           </span>
           <span class="btn-spinner hidden"></span>
         </button>
-        <button id="sampleBtn" class="btn-ghost">Try Sample Pin</button>
+
+        <div class="samples-dropdown">
+          <button id="sampleBtn" class="btn-ghost">Try Sample 4K</button>
+        </div>
+
+        <button id="openModalBtn" class="btn-ghost" title="Extract directly from page source">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Page Source</span>
+        </button>
       </div>
 
       <!-- Status / Notification Message -->
@@ -92,6 +104,12 @@
         <div id="imageWrapper" class="media-container hidden">
           <img id="imagePreview" src="" alt="Pinterest Media Preview" loading="lazy" />
         </div>
+      </div>
+
+      <!-- Available Qualities / Format Options -->
+      <div id="qualitySection" class="quality-section hidden">
+        <span class="quality-label">Available Resolutions:</span>
+        <div id="qualityPills" class="quality-pills"></div>
       </div>
 
       <!-- Action Buttons -->
@@ -145,7 +163,7 @@
       </div>
 
       <div class="pro-tip">
-        <strong>⚡ Pro-Tip for Images:</strong> If you right-click any picture on Pinterest and choose <em>"Copy Image Address"</em>, GetNow automatically converts it to the full-size uncompressed original (4K) file!
+        <strong>⚡ Pro-Tip for Images:</strong> Right-click (or hold) any picture on Pinterest and choose <em>"Copy Image Address"</em>. GetNow automatically converts it to the full-size uncompressed original (4K) file!
       </div>
     </section>
 
@@ -159,9 +177,37 @@
     </section>
   </main>
 
+  <!-- Page Source Extractor Modal -->
+  <div id="sourceModal" class="modal hidden">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-badge">📋</span>
+          <h3>Extract from Page Source</h3>
+        </div>
+        <button id="closeModalBtn" class="btn-modal-close" title="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          When Pinterest blocks public CORS proxies on static GitHub Pages, you can bypass all blocks in 3 seconds:
+        </p>
+        <ol class="modal-steps">
+          <li>Open the Pin in your browser.</li>
+          <li>Right-click anywhere &rarr; <strong>"View Page Source"</strong> (or press <code>Ctrl + U</code>).</li>
+          <li>Copy everything (<code>Ctrl + A</code>, <code>Ctrl + C</code>) and paste below:</li>
+        </ol>
+        <textarea id="sourceInput" placeholder="Paste Pinterest HTML source here (starts with <!DOCTYPE html>)..." rows="5"></textarea>
+        <button id="extractSourceBtn" class="btn-primary">
+          <span>⚡ Extract Media from Source</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="site-footer">
-    <p>GetNow • Lightweight Client-Side Downloader • Hosted on GitHub Pages</p>
+    <p>GetNow • Lightweight Pinterest Media Downloader • Client-Side & Local Server Ready</p>
     <p class="disclaimer">GetNow is not affiliated with Pinterest. All media is copyrighted by their respective owners.</p>
   </footer>
 

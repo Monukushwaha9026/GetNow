@@ -1,42 +1,79 @@
-# GetNow ⚡ — Pinterest Video & Image Downloader
+# GetNow ⚡ — Pinterest Video & Image Downloader (v2.0)
 
-A minimal, lightning-fast, and lightweight web application to download Pinterest videos, images, and GIFs in original high quality.
+A lightning-fast, minimal, and modern web application to download Pinterest videos, images, and GIFs in original high quality (Full HD & 4K).
 
-Hosted directly via **GitHub Pages** with zero backend infrastructure, zero tracking, and zero ads.
+Works both as a **standalone client-side app on GitHub Pages** and with an optional **zero-dependency Node.js local server** for 100% reliable direct file saving.
 
 ---
 
 ## ✨ Features
 
-- **Single-Click Download:** Paste any Pinterest link and download the original media file.
-- **Videos & Images:** Supports HD MP4 video streams and uncompressed original (4K) photos.
-- **Smart Image Upscaler:** Automatically converts standard low-res thumbnails to uncompressed `/originals/`.
-- **Pure Client-Side:** Runs completely in the browser via vanilla HTML5, CSS3, and modern JavaScript.
-- **Mobile Friendly:** Fully responsive design with 1-tap clipboard paste on mobile and desktop.
-- **Recent Downloads:** Saves recent downloads locally in your browser's `localStorage`.
+- **⚡ Instant Media Extraction:** Paste any Pinterest pin link, shortlink (`pin.it`), or direct image URL to preview and download.
+- **🎥 HD MP4 Videos:** Automatically detects and extracts high-definition MP4 streams and video lists.
+- **🖼️ 4K Smart Image Upscaler:** Automatically upgrades low-res thumbnails (`/736x/`, `/564x/`, `/236x/`) to full uncompressed originals (`/originals/`).
+- **🎯 Multi-Resolution Selector:** Choose between Original 4K, Large HD, or standard resolutions directly in the UI.
+- **💾 Direct File Saving (Zero CORS issues):** When running locally with `npm start`, media streams directly with proper download headers straight to your Downloads folder.
+- **🌐 100% Client-Side Compatible:** Fully runs on **GitHub Pages** without any backend required.
+- **📋 Page Source Fallback:** Includes a 1-click Page Source extractor modal to bypass all CORS blocks or Pinterest rate-limits on static hosts.
+- **📜 Recent History:** Saves your recent downloads locally in your browser's `localStorage`.
+- **📱 Fully Responsive:** Clean dark mode UI crafted with modern CSS glassmorphism, responsive across desktop and mobile.
 
 ---
 
-## 🚀 Live Demo on GitHub Pages
+## 🚀 Quick Start (Local Development)
 
-The site is configured to be hosted on GitHub Pages:
-👉 **`https://monukushwaha9026.github.io/GetNow/`**
+No complex installations or heavy frameworks required — runs on native Node.js (v18+ or v20+ / v24+):
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Monukushwaha9026/GetNow.git
+cd GetNow
+
+# 2. Start the local server (zero npm dependencies required!)
+npm start
+# or: node server.js
+```
+
+Open your browser at:
+👉 **`http://localhost:3030`**
 
 ---
 
-## 🛠️ How to Enable GitHub Pages for this Repo
+## 🌐 Deploy to GitHub Pages (Static Hosting)
 
-1. Open repository settings: [Settings > Pages](https://github.com/Monukushwaha9026/GetNow/settings/pages)
-2. Under **Build and deployment**:
+1. Fork or push this repository to GitHub.
+2. Go to **Settings > Pages** in your GitHub repository.
+3. Under **Build and deployment**:
    - **Source:** Select `Deploy from a branch`
    - **Branch:** Select `main` and folder `/(root)`
-3. Click **Save**.
-4. In about 60 seconds, your site will be live!
+4. Click **Save**.
+5. Your live app will be accessible at:
+   👉 `https://<your-username>.github.io/GetNow/`
+
+---
+
+## 📁 Project Structure
+
+```
+GetNow/
+├── index.html       # Clean semantic UI with media preview, quality pills, and modal
+├── style.css        # Responsive dark-theme styling, glassmorphism, and micro-interactions
+├── app.js           # Client-side extraction engine, backend auto-detector, and DOM logic
+├── server.js        # Lightweight zero-dependency Node.js backend server with stream download API
+├── package.json     # Project metadata and npm start script
+└── README.md        # Documentation and usage guide
+```
 
 ---
 
 ## 💻 Tech Stack
 
-- **HTML5:** Semantic markup & modern audio/video media components.
-- **CSS3:** Custom responsive layout, CSS variables, dark theme, and micro-interactions.
-- **JavaScript (ES6+):** Multi-proxy client-side extraction pipeline, Blob download stream handler, Clipboard API.
+- **Frontend:** Vanilla HTML5, CSS3 (variables, flexbox/grid, glassmorphism), ES6+ JavaScript.
+- **Backend:** Native Node.js `http` and `stream` modules (zero npm dependencies).
+- **APIs:** Pinterest hydration parser (`__PWS_INITIAL_PROPS__`, `__PWS_DATA__`), OpenGraph/Twitter meta extraction, JSON-LD Schema.
+
+---
+
+## ⚖️ Disclaimer
+
+GetNow is an independent open-source tool and is not affiliated with Pinterest. All media files and trademarks belong to their respective owners.

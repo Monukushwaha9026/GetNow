@@ -1,0 +1,19 @@
+{
+  "name": "getnow",
+  "version": "2.0.0",
+  "description": "GetNow - Fast Pinterest Video & Image Downloader (Client-Side & Lightweight Local/Cloud Server)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "pinterest",
+    "downloader",
+    "pinterest-video-downloader",
+    "pinterest-image-downloader",
+    "media-downloader"
+  ],
+  "author": "Monu Kushwaha",
+  "license": "MIT"
+}
